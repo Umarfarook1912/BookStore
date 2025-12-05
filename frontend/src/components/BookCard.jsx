@@ -1,15 +1,20 @@
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import { FaBook } from 'react-icons/fa';
 
 export default function BookCard({ book }) {
     return (
-        <div className="card h-100">
-            {book.coverImage && <img src={book.coverImage} className="card-img-top" alt={book.title} />}
-            <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{book.title}</h5>
-                <p className="card-text text-muted">{book.author}</p>
-                <p className="card-text mt-auto">${book.price.toFixed(2)}</p>
-                <Link to={`/books/${book._id}`} className="btn btn-primary mt-2">Details</Link>
-            </div>
-        </div>
+        <Card className="h-100 shadow-sm">
+            {book.coverImage && <Card.Img variant="top" src={book.coverImage} alt={book.title} />}
+            <Card.Body className="d-flex flex-column">
+                <Card.Title><FaBook style={{ marginRight: 8 }} />{book.title}</Card.Title>
+                <Card.Text className="text-muted">{book.author}</Card.Text>
+                <div className="mt-auto d-flex justify-content-between align-items-center">
+                    <strong>${book.price.toFixed(2)}</strong>
+                    <Button as={Link} to={`/books/${book._id}`} variant="light">Details</Button>
+                </div>
+            </Card.Body>
+        </Card>
     );
 }

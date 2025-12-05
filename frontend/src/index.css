@@ -3,9 +3,15 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Theme variables (light green primary) */
+  --bs-primary: #4caf50;
+  --bs-primary-rgb: 76, 175, 80;
+  --bs-body-bg: #ffffff;
+  --bs-body-color: #162019;
+
+  color-scheme: light;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,12 +21,12 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--bs-primary);
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #388e3c;
 }
 
 body {
@@ -43,13 +49,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--bs-primary);
+  color: #fff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: rgba(var(--bs-primary-rgb), 0.9);
 }
 
 button:focus,
@@ -59,15 +66,106 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
   }
 
   a:hover {
-    color: #747bff;
+    color: #388e3c;
   }
 
   button {
-    background-color: #f9f9f9;
+    background-color: var(--bs-primary);
   }
+}
+
+/* Small helpers for spacing under navbar */
+main {
+  padding-top: 1rem;
+}
+
+/* Ensure Bootstrap primary components use our green theme (fallback for some variants) */
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  color: #fff !important;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #43a047 !important;
+  border-color: #43a047 !important;
+}
+.navbar, .bg-primary {
+  background-color: var(--bs-primary) !important;
+}
+.form-select:focus, .form-control:focus {
+  border-color: var(--bs-primary) !important;
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), .15) !important;
+}
+
+/* Center the main navigation links on wide screens */
+.navbar .nav-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* When collapsed (small screens), fall back to normal flow */
+@media (max-width: 991.98px) {
+  .navbar .nav-center {
+    position: static;
+    transform: none;
+    margin-top: .5rem;
+    justify-content: center;
+  }
+}
+
+/* Slight padding tweak so brand + centered nav look balanced */
+.navbar .navbar-brand {
+  padding-right: 1rem;
+}
+
+/* Hero image responsive tweak */
+.hero img {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Increase navbar height and adjust spacing for better balance */
+.navbar {
+  min-height: 72px;
+}
+.navbar .navbar-brand {
+  font-size: 1.15rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+.navbar .nav-link {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+.navbar .nav-right {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Slightly reduce center nav absolute offset on very wide screens so brand/profile feel closer */
+@media (min-width: 1200px) {
+  .navbar .nav-center { left: 52%; }
+}
+
+/* Hero styles */
+.hero {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, rgba(76,175,80,0.06), rgba(76,175,80,0.02));
+}
+.hero .display-4 { font-weight: 700; }
+
+.feature-card { border: 0; }
+
+.footer {
+  background: #f8faf8;
+  padding: 2rem 0;
+  border-top: 1px solid #e9f4ea;
 }

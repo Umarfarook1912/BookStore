@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import { FaCartPlus } from 'react-icons/fa';
 
 export default function BookDetails() {
     const { id } = useParams();
@@ -21,28 +26,29 @@ export default function BookDetails() {
 
     const addToCart = () => {
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        const existing = cart.find(i => i.book === book._id);
-        if (existing) existing.quantity += 1; else cart.push({ book: book._id, title: book.title, price: book.price, quantity: 1 });
+        const existing = cart.find((i) => i.book === book._id);
+        if (existing) existing.quantity += 1;
+        else cart.push({ book: book._id, title: book.title, price: book.price, quantity: 1 });
         localStorage.setItem('cart', JSON.stringify(cart));
         navigate('/cart');
     };
 
-    if (!book) return <div className="container py-4">Loading...</div>;
+    if (!book) return <Container className="py-4">Loading...</Container>;
 
     return (
-        <div className="container py-4">
-            <div className="row">
-                <div className="col-md-4">
+        <Container className="py-4">
+            <Row>
+                <Col md={4}>
                     {book.coverImage && <img src={book.coverImage} className="img-fluid" alt={book.title} />}
-                </div>
-                <div className="col-md-8">
+                </Col>
+                <Col md={8}>
                     <h3>{book.title}</h3>
                     <p className="text-muted">{book.author}</p>
                     <p>{book.description}</p>
                     <h4>${book.price.toFixed(2)}</h4>
-                    <button className="btn btn-success" onClick={addToCart}>Add to Cart</button>
-                </div>
-            </div>
-        </div>
+                    <Button variant="dark" onClick={addToCart}><FaCartPlus style={{ marginRight: 8 }} />Add to Cart</Button>
+                </Col>
+            </Row>
+        </Container>
     );
 }

@@ -1,6 +1,11 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Container from 'react-bootstrap/Container';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FaHome, FaShoppingCart, FaSignInAlt, FaUserPlus, FaUser } from 'react-icons/fa';
 
 export default function AppNavbar() {
     const { user, logout } = useContext(AuthContext);
@@ -12,38 +17,36 @@ export default function AppNavbar() {
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div className="container-fluid">
-                <Link className="navbar-brand" to="/">BookStore</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false">
-                    <span className="navbar-toggler-icon" />
-                </button>
-                <div className="collapse navbar-collapse" id="nav">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                        <li className="nav-item"><Link className="nav-link" to="/cart">Cart</Link></li>
+        <Navbar expand="lg" variant="dark" style={{ backgroundColor: 'var(--bs-primary)' }}>
+            <Container>
+                <Navbar.Brand as={Link} to="/">BookStore</Navbar.Brand>
+                <Navbar.Toggle aria-controls="main-nav" />
+                <Navbar.Collapse id="main-nav" style={{ position: 'relative' }}>
+                    <Nav className="nav-center">
+                        <Nav.Link as={Link} to="/browse"><FaHome style={{ marginRight: 6 }} />Browse</Nav.Link>
+                        <Nav.Link as={Link} to="/cart"><FaShoppingCart style={{ marginRight: 6 }} />Cart</Nav.Link>
+                        {user && <Nav.Link as={Link} to="/orders">My Orders</Nav.Link>}
                         {user?.role === 'admin' && (
-                            <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
+                            <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
                         )}
-                    </ul>
-                    <ul className="navbar-nav ms-auto">
+                    </Nav>
+
+                    <Nav className="ms-auto nav-right">
                         {!user ? (
                             <>
-                                <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
-                                <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+                                <Nav.Link as={Link} to="/login"><FaSignInAlt style={{ marginRight: 6 }} />Login</Nav.Link>
+                                <Nav.Link as={Link} to="/register"><FaUserPlus style={{ marginRight: 6 }} />Register</Nav.Link>
                             </>
                         ) : (
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">{user.name}</a>
-                                <ul className="dropdown-menu dropdown-menu-end">
-                                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                                    <li><button className="dropdown-item" onClick={handleLogout}>Logout</button></li>
-                                </ul>
-                            </li>
+                            <NavDropdown title={<><FaUser style={{ marginRight: 8 }} />{user.name}</>} id="user-dropdown" align="end">
+                                <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                            </NavDropdown>
                         )}
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
     );
 }

@@ -2,6 +2,12 @@ import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { FaSignInAlt } from 'react-icons/fa';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -21,15 +27,23 @@ export default function Login() {
     };
 
     return (
-        <div className="container py-4"><div className="row justify-content-center"><div className="col-md-6">
-            <h3>Login</h3>
-            <form onSubmit={submit}>
-                <div className="mb-3"><label className="form-label">Email</label>
-                    <input className="form-control" value={email} onChange={e => setEmail(e.target.value)} /></div>
-                <div className="mb-3"><label className="form-label">Password</label>
-                    <input type="password" className="form-control" value={password} onChange={e => setPassword(e.target.value)} /></div>
-                <button className="btn btn-primary">Login</button>
-            </form>
-        </div></div></div>
+        <Container className="py-4">
+            <Row className="justify-content-center">
+                <Col md={6}>
+                    <h3><FaSignInAlt style={{ marginRight: 8 }} />Login</h3>
+                    <Form onSubmit={submit}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control value={email} onChange={(e) => setEmail(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        </Form.Group>
+                        <Button type="submit" variant="primary">Login</Button>
+                    </Form>
+                </Col>
+            </Row>
+        </Container>
     );
 }
