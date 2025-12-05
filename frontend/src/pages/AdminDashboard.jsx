@@ -4,8 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
+import notify from '../services/notify';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Card from 'react-bootstrap/Card';
@@ -15,8 +14,7 @@ export default function AdminDashboard() {
     const [books, setBooks] = useState([]);
     const [orders, setOrders] = useState([]);
     const [statusMap, setStatusMap] = useState({});
-    const [toast, setToast] = useState({ show: false, message: '', bg: 'success' });
-    const [form, setForm] = useState({ title: '', author: '', price: 0 });
+    const [form, setForm] = useState({ title: '', author: '', price: 0, genre: '' });
 
     const load = async () => {
         try {
@@ -47,10 +45,10 @@ export default function AdminDashboard() {
         try {
             await api.put(`/orders/${orderId}/status`, { status });
             await loadOrders();
-            setToast({ show: true, message: `Order ${orderId} updated to ${status}`, bg: 'success' });
+            notify.toastSuccess(`Order ${orderId} updated to ${status}`);
         } catch (err) {
             console.error('Failed to update order status', err);
-            setToast({ show: true, message: err?.response?.data?.message || 'Failed to update order status', bg: 'danger' });
+            notify.toastError(err?.response?.data?.message || 'Failed to update order status');
         }
     };
 
@@ -58,17 +56,26 @@ export default function AdminDashboard() {
         e.preventDefault();
         try {
             await api.post('/books', form);
-            setForm({ title: '', author: '', price: 0 });
+            setForm({ title: '', author: '', price: 0, genre: '' });
             load();
+            notify.toastSuccess('Book added');
         } catch (err) {
-            alert('Failed');
+            console.error('Failed to add book', err);
+            notify.toastError(err?.response?.data?.message || 'Failed to add book');
         }
     };
 
     const remove = async (id) => {
-        if (!confirm('Delete?')) return;
-        await api.delete(`/books/${id}`);
-        load();
+        const ok = await notify.confirm('Delete book?', 'This action cannot be undone');
+        if (!ok) return;
+        try {
+            await api.delete(`/books/${id}`);
+            load();
+            notify.toastSuccess('Book deleted');
+        } catch (err) {
+            console.error('Failed to delete book', err);
+            notify.toastError(err?.response?.data?.message || 'Failed to delete book');
+        }
     };
 
     return (
@@ -80,6 +87,7 @@ export default function AdminDashboard() {
                     <Form onSubmit={submit}>
                         <Form.Control className="mb-2" placeholder="Title" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} />
                         <Form.Control className="mb-2" placeholder="Author" value={form.author} onChange={e => setForm({ ...form, author: e.target.value })} />
+                        <Form.Control className="mb-2" placeholder="Genre" value={form.genre} onChange={e => setForm({ ...form, genre: e.target.value })} />
                         <Form.Control type="number" className="mb-2" placeholder="Price" value={form.price} onChange={e => setForm({ ...form, price: Number(e.target.value) })} />
                         <Button type="submit" variant="primary"><FaPlus style={{ marginRight: 8 }} />Add</Button>
                     </Form>
@@ -89,8 +97,14 @@ export default function AdminDashboard() {
                     <ListGroup>
                         {books.map(b => (
                             <ListGroup.Item key={b._id} className="d-flex justify-content-between align-items-center">
-                                <div>{b.title} - ${b.price.toFixed(2)}</div>
-                                <div><Button size="sm" variant="danger" onClick={() => remove(b._id)}><FaTrash /></Button></div>
+                                <div>
+                                    <div><strong>{b.title}</strong></div>
+                                    <div className="small text-muted">{b.author}{b.genre ? ` • ${b.genre}` : ''}</div>
+                                </div>
+                                <div className="text-end">
+                                    <div>${b.price.toFixed(2)}</div>
+                                    <div className="mt-1"><Button size="sm" variant="danger" onClick={() => remove(b._id)}><FaTrash /></Button></div>
+                                </div>
                             </ListGroup.Item>
                         ))}
                     </ListGroup>
@@ -140,11 +154,7 @@ export default function AdminDashboard() {
                     </Card.Body>
                 </Card>
             ))}
-            <ToastContainer position="top-end" className="p-3">
-                <Toast bg={toast.bg} onClose={() => setToast(s => ({ ...s, show: false }))} show={toast.show} delay={3000} autohide>
-                    <Toast.Body className="text-white">{toast.message}</Toast.Body>
-                </Toast>
-            </ToastContainer>
+            {/* Notifications handled by SweetAlert2 via `notify` service */}
         </Container>
     );
 }

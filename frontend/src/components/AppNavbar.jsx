@@ -25,9 +25,9 @@ export default function AppNavbar() {
                     <Nav className="nav-center">
                         <Nav.Link as={Link} to="/browse"><FaHome style={{ marginRight: 6 }} />Browse</Nav.Link>
                         <Nav.Link as={Link} to="/cart"><FaShoppingCart style={{ marginRight: 6 }} />Cart</Nav.Link>
-                        {user && <Nav.Link as={Link} to="/orders">My Orders</Nav.Link>}
+                        {user && <Nav.Link as={Link} to={user?.role === 'admin' ? '/admin' : '/orders'}>Orders</Nav.Link>}
                         {user?.role === 'admin' && (
-                            <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
+                            <Nav.Link as={Link} to="/admin">Books</Nav.Link>
                         )}
                     </Nav>
 

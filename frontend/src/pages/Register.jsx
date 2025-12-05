@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { AuthContext } from '../context/AuthContext';
+import notify from '../services/notify';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -23,7 +24,7 @@ export default function Register() {
             setUser(res.data.token, res.data.user);
             navigate('/');
         } catch (err) {
-            alert(err?.response?.data?.message || 'Register failed');
+            notify.toastError(err?.response?.data?.message || 'Register failed');
         }
     };
 

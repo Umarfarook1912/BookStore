@@ -21,7 +21,6 @@ export default function Home() {
     const [author, setAuthor] = useState('');
     const [priceMin, setPriceMin] = useState('');
     const [priceMax, setPriceMax] = useState('');
-    const [ratingMin, setRatingMin] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
 
@@ -35,14 +34,13 @@ export default function Home() {
         const a = searchParams.get('author') || '';
         const pmin = searchParams.get('priceMin') || '';
         const pmax = searchParams.get('priceMax') || '';
-        const rmin = searchParams.get('ratingMin') || '';
+        // rating filter removed
         const pg = parseInt(searchParams.get('page') || '1', 10) || 1;
         setSearch(s);
         setGenre(g);
         setAuthor(a);
         setPriceMin(pmin);
         setPriceMax(pmax);
-        setRatingMin(rmin);
         setPage(pg);
     }, []);
 
@@ -55,7 +53,7 @@ export default function Home() {
             if ((opts.author ?? author) !== '') params.author = opts.author ?? author;
             if ((opts.priceMin ?? priceMin) !== '') params.priceMin = opts.priceMin ?? priceMin;
             if ((opts.priceMax ?? priceMax) !== '') params.priceMax = opts.priceMax ?? priceMax;
-            if ((opts.ratingMin ?? ratingMin) !== '') params.ratingMin = opts.ratingMin ?? ratingMin;
+            // rating filter removed
             params.page = opts.page ?? page;
 
             const res = await api.get('/books', { params });
@@ -80,7 +78,6 @@ export default function Home() {
             if (author) params.author = author;
             if (priceMin) params.priceMin = priceMin;
             if (priceMax) params.priceMax = priceMax;
-            if (ratingMin) params.ratingMin = ratingMin;
             if (page && page > 1) params.page = String(page);
             setSearchParams(params, { replace: true });
             fetchBooks({});
@@ -89,7 +86,7 @@ export default function Home() {
             if (debounceRef.current) clearTimeout(debounceRef.current);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [search, genre, author, priceMin, priceMax, ratingMin, page]);
+    }, [search, genre, author, priceMin, priceMax, page]);
 
     return (
         <Container className="py-4">
@@ -121,19 +118,8 @@ export default function Home() {
                         <Form.Control type="number" min="0" placeholder="99.99" value={priceMax} onChange={(e) => { setPriceMax(e.target.value); setPage(1); }} />
                     </Col>
                     <Col md={2} className="mt-2">
-                        <Form.Label>Min Rating</Form.Label>
-                        <Form.Select value={ratingMin} onChange={(e) => { setRatingMin(e.target.value); setPage(1); }}>
-                            <option value="">Any</option>
-                            <option value="1">1+</option>
-                            <option value="2">2+</option>
-                            <option value="3">3+</option>
-                            <option value="4">4+</option>
-                            <option value="5">5</option>
-                        </Form.Select>
-                    </Col>
-                    <Col md={2} className="mt-2">
                         <Button variant="primary" onClick={() => fetchBooks({ page: 1 })}>Apply</Button>{' '}
-                        <Button variant="secondary" onClick={() => { setSearch(''); setGenre(''); setAuthor(''); setPriceMin(''); setPriceMax(''); setRatingMin(''); setPage(1); }}>Reset</Button>
+                        <Button variant="secondary" onClick={() => { setSearch(''); setGenre(''); setAuthor(''); setPriceMin(''); setPriceMax(''); setPage(1); }}>Reset</Button>
                     </Col>
                 </Row>
             </Form>

@@ -3,6 +3,7 @@ import api from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
+import notify from '../services/notify';
 
 export default function Checkout() {
     const [loading, setLoading] = useState(false);
@@ -10,16 +11,16 @@ export default function Checkout() {
 
     const submit = async () => {
         const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-        if (!cart.length) return alert('Cart empty');
+        if (!cart.length) return notify.toastError('Cart empty');
         const items = cart.map((i) => ({ book: i.book, quantity: i.quantity }));
         setLoading(true);
         try {
             await api.post('/orders', { items });
             localStorage.removeItem('cart');
-            alert('Order placed');
+            notify.toastSuccess('Order placed');
             navigate('/orders');
         } catch (err) {
-            alert(err?.response?.data?.message || 'Order failed');
+            notify.toastError(err?.response?.data?.message || 'Order failed');
         } finally {
             setLoading(false);
         }
