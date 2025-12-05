@@ -88,7 +88,7 @@ export default function Home() {
         return () => {
             if (debounceRef.current) clearTimeout(debounceRef.current);
         };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search, genre, author, priceMin, priceMax, ratingMin, page]);
 
     return (

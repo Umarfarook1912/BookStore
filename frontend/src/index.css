@@ -90,14 +90,20 @@ main {
   border-color: var(--bs-primary) !important;
   color: #fff !important;
 }
-.btn-primary:hover, .btn-primary:focus {
+
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: #43a047 !important;
   border-color: #43a047 !important;
 }
-.navbar, .bg-primary {
+
+.navbar,
+.bg-primary {
   background-color: var(--bs-primary) !important;
 }
-.form-select:focus, .form-control:focus {
+
+.form-select:focus,
+.form-control:focus {
   border-color: var(--bs-primary) !important;
   box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), .15) !important;
 }
@@ -128,22 +134,25 @@ main {
 
 /* Hero image responsive tweak */
 .hero img {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* Increase navbar height and adjust spacing for better balance */
 .navbar {
   min-height: 72px;
 }
+
 .navbar .navbar-brand {
   font-size: 1.15rem;
   padding-top: 0.6rem;
   padding-bottom: 0.6rem;
 }
+
 .navbar .nav-link {
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
 }
+
 .navbar .nav-right {
   margin-right: 0.5rem;
   display: flex;
@@ -152,17 +161,24 @@ main {
 
 /* Slightly reduce center nav absolute offset on very wide screens so brand/profile feel closer */
 @media (min-width: 1200px) {
-  .navbar .nav-center { left: 52%; }
+  .navbar .nav-center {
+    left: 52%;
+  }
 }
 
 /* Hero styles */
 .hero {
   padding: 4rem 0;
-  background: linear-gradient(180deg, rgba(76,175,80,0.06), rgba(76,175,80,0.02));
+  background: linear-gradient(180deg, rgba(76, 175, 80, 0.06), rgba(76, 175, 80, 0.02));
 }
-.hero .display-4 { font-weight: 700; }
 
-.feature-card { border: 0; }
+.hero .display-4 {
+  font-weight: 700;
+}
+
+.feature-card {
+  border: 0;
+}
 
 .footer {
   background: #f8faf8;

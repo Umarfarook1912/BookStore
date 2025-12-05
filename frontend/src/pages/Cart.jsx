@@ -52,8 +52,8 @@ export default function Cart() {
 
             {cart.length > 0 && (
                 <div className="mt-3">
-                      <h5>Total: ${total.toFixed(2)}</h5>
-                      <Button variant="primary" onClick={checkout}><FaCreditCard style={{ marginRight: 8 }} />Checkout</Button>
+                    <h5>Total: ${total.toFixed(2)}</h5>
+                    <Button variant="primary" onClick={checkout}><FaCreditCard style={{ marginRight: 8 }} />Checkout</Button>
                 </div>
             )}
         </Container>
