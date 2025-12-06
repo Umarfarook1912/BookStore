@@ -1,0 +1,308 @@
+/* Admin Dashboard Container */
+.admin-dashboard {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  min-height: 100vh;
+}
+
+/* Stats Cards */
+.stat-card {
+  border-radius: 16px !important;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.stat-icon.bg-primary {
+  background: linear-gradient(45deg, #3498db, #2980b9) !important;
+}
+
+.stat-icon.bg-success {
+  background: linear-gradient(45deg, #2ecc71, #27ae60) !important;
+}
+
+.stat-icon.bg-warning {
+  background: linear-gradient(45deg, #f39c12, #d35400) !important;
+}
+
+.stat-icon.bg-info {
+  background: linear-gradient(45deg, #3498db, #9b59b6) !important;
+}
+
+/* Tabs */
+.admin-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-tabs .btn {
+  border-radius: 12px !important;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-tabs .btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Form Controls */
+.form-control, .form-select {
+  border-radius: 12px !important;
+  border: 2px solid #e9ecef !important;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #3498db !important;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+  transform: translateY(-1px);
+}
+
+/* Status Select */
+.status-select {
+  min-width: 140px;
+  border-radius: 20px !important;
+  border: 2px solid transparent !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.status-select:hover {
+  border-color: currentColor !important;
+}
+
+.status-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25) !important;
+}
+
+/* Table Styles */
+.table {
+  --bs-table-hover-bg: rgba(52, 152, 219, 0.05);
+}
+
+.table thead th {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
+
+.table tbody td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(52, 152, 219, 0.05), rgba(52, 152, 219, 0.02));
+  transform: translateX(2px);
+  transition: all 0.3s ease;
+}
+
+/* Book Thumbnail */
+.book-thumb {
+  width: 50px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.book-thumb:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Badges */
+.badge {
+  font-weight: 500;
+  padding: 0.5em 0.8em;
+  border-radius: 10px;
+}
+
+.bg-warning {
+  background: linear-gradient(45deg, #f39c12, #e67e22) !important;
+}
+
+.bg-success {
+  background: linear-gradient(45deg, #2ecc71, #27ae60) !important;
+}
+
+.bg-primary {
+  background: linear-gradient(45deg, #3498db, #2980b9) !important;
+}
+
+.bg-info {
+  background: linear-gradient(45deg, #3498db, #9b59b6) !important;
+}
+
+.bg-danger {
+  background: linear-gradient(45deg, #e74c3c, #c0392b) !important;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 12px !important;
+  font-weight: 500;
+  transition: all 0.3s ease !important;
+}
+
+.btn-outline-primary {
+  border: 2px solid #3498db !important;
+}
+
+.btn-outline-primary:hover {
+  background: linear-gradient(45deg, #3498db, #2980b9) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #3498db, #2980b9) !important;
+  border: none !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #2980b9, #21618c) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+.btn-outline-danger {
+  border: 2px solid #e74c3c !important;
+}
+
+.btn-outline-danger:hover {
+  background: linear-gradient(45deg, #e74c3c, #c0392b) !important;
+  border-color: transparent !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 20px !important;
+  border: none;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 20px 20px 0 0 !important;
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  background: #f8f9fa;
+  border-radius: 0 0 20px 20px;
+  padding: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .admin-tabs {
+    flex-direction: column;
+  }
+  
+  .admin-tabs .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .table-responsive {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .stat-card .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stat-icon {
+    margin: 1rem auto;
+  }
+  
+  .table thead {
+    display: none;
+  }
+  
+  .table tbody tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+  
+  .table tbody td {
+    display: block;
+    text-align: right;
+    padding: 0.5rem 0;
+    border: none;
+    position: relative;
+  }
+  
+  .table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: #495057;
+  }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Scrollbar Styling */
+.table-responsive::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #2980b9, #21618c);
+}

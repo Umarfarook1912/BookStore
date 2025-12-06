@@ -1,0 +1,77 @@
+.orders-page {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.stat-card {
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.order-filters .btn {
+  transition: all 0.3s ease;
+}
+
+.order-filters .btn:hover {
+  transform: translateY(-2px);
+}
+
+.order-card {
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.order-summary {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+.empty-orders-icon {
+  font-size: 4rem;
+  color: #dee2e6;
+  margin-bottom: 2rem;
+}
+
+.order-items {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .order-filters {
+    flex-direction: column;
+  }
+  
+  .order-filters .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-card .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stat-icon {
+    margin: 0 auto 1rem;
+  }
+}

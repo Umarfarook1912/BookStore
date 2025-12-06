@@ -1,0 +1,70 @@
+.checkout-page {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.payment-methods .form-check {
+  padding: 1rem;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.payment-methods .form-check:hover {
+  border-color: #3498db;
+  background: rgba(52, 152, 219, 0.05);
+}
+
+.payment-methods .form-check-input:checked ~ .form-check-label {
+  color: #3498db;
+  font-weight: 600;
+}
+
+.order-items {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #f8f9fa;
+  border-radius: 20px;
+  font-size: 0.875rem;
+}
+
+.security-badge svg {
+  margin-right: 0.5rem;
+}
+
+.form-control, .form-select {
+  border-radius: 12px;
+  border: 2px solid #e9ecef;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+}
+
+@media (max-width: 992px) {
+  .sticky-top {
+    position: static;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .security-badges {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

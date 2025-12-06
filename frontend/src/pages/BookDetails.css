@@ -1,0 +1,119 @@
+.book-details {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.book-cover-card {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.book-cover-container {
+  position: relative;
+  padding-top: 150%;
+  overflow: hidden;
+}
+
+.book-cover-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.book-cover-container:hover .book-cover-img {
+  transform: scale(1.05);
+}
+
+.book-badges {
+  z-index: 2;
+}
+
+.book-title {
+  line-height: 1.2;
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.author-link {
+  color: #3498db;
+  transition: all 0.3s ease;
+}
+
+.author-link:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+.price-section {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border-radius: 15px;
+  border: 2px solid #e9ecef;
+}
+
+.quantity-selector {
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.quantity-selector .btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-section {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 15px;
+}
+
+.related-book-card {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.related-book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.related-book-img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.actions-section .btn {
+  transition: all 0.3s ease;
+}
+
+.actions-section .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+}
+
+@media (max-width: 768px) {
+  .book-title {
+    font-size: 2rem;
+  }
+  
+  .actions-section .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .quantity-selector {
+    width: 100%;
+    justify-content: center;
+  }
+}
