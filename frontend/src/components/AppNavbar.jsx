@@ -44,19 +44,7 @@ export default function AppNavbar() {
 
     return (
         <>
-            {/* Top Announcement Bar */}
-            <div className="announcement-bar bg-primary text-white py-2">
-                <Container className="d-flex justify-content-between align-items-center">
-                    <small className="d-flex align-items-center gap-2">
-                        <FaTags /> Free shipping on orders over $25
-                    </small>
-                    <div className="d-flex gap-3">
-                        <small>📚 New Arrivals Daily</small>
-                        <small>⭐ 4.8/5 Customer Rating</small>
-                    </div>
-                </Container>
-            </div>
-
+           
             {/* Main Navbar */}
             <Navbar expand="lg" variant="dark" className="main-navbar shadow">
                 <Container>
